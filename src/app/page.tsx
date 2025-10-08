@@ -29,6 +29,7 @@ export default function Home() {
   const [filteredMemos, setFilteredMemos] = useState<Memo[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingMemo, setEditingMemo] = useState<Memo | null>(null);
+  const [isClient, setIsClient] = useState(false);
   const [filters, setFilters] = useState<FilterOptions>({
     search: '',
     category: '',
@@ -46,8 +47,15 @@ export default function Home() {
     priority: 'medium'
   });
 
+  // 클라이언트 사이드 확인
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // 메모 데이터 로드
   useEffect(() => {
+    if (!isClient) return;
+    
     try {
       const loadedMemos = getMemos();
       setMemos(loadedMemos);
@@ -57,7 +65,7 @@ export default function Home() {
       setMemos([]);
       setFilteredMemos([]);
     }
-  }, []);
+  }, [isClient]);
 
   // 필터링 및 검색
   useEffect(() => {
@@ -160,6 +168,18 @@ export default function Home() {
     const priorityObj = PRIORITIES.find(p => p.value === priority);
     return priorityObj?.label || priority;
   };
+
+  // 클라이언트 사이드가 아닌 경우 로딩 표시
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">로딩 중...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
