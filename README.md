@@ -1,129 +1,36 @@
-# 공인중개사 메모 관리 시스템
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-PySide6를 사용한 현대적이고 직관적인 메모 관리 애플리케이션입니다. 공인중개사가 부동산 관련 메모를 효율적으로 관리할 수 있도록 설계되었습니다.
+## Getting Started
 
-## 주요 기능
+First, run the development server:
 
-### 📝 메모 관리
-- **새 메모**: 새로운 메모를 생성하고 즉시 편집 가능
-- **수정**: 기존 메모를 편집 모드로 전환
-- **저장**: 편집된 메모를 저장하고 편집 모드 종료
-- **삭제**: 불필요한 메모를 안전하게 삭제
-
-### 🔍 검색 및 필터링
-- **통합 검색**: 제목, 내용, 카테고리, 위치로 통합 검색
-- **카테고리 필터**: 메모 카테고리별 필터링
-- **부동산 유형 필터**: 아파트, 빌라, 단독주택 등 유형별 필터링
-- **우선순위 필터**: 높음, 보통, 낮음 우선순위별 필터링
-
-### 🏠 공인중개사 특화 기능
-- **부동산 유형 분류**: 아파트, 빌라, 단독주택, 오피스텔, 상가, 사무실, 공장, 창고, 토지, 기타
-- **위치 정보**: 부동산 위치 정보 관리
-- **우선순위 관리**: 중요도에 따른 메모 분류
-- **카테고리 시스템**: 사용자 정의 카테고리 관리
-
-### 🎨 현대적인 UI/UX
-- **Bootstrap 스타일**: 깔끔하고 직관적인 인터페이스
-- **반응형 레이아웃**: 다양한 화면 크기에 최적화
-- **다크 모드 지원**: 시스템 설정에 따른 자동 테마 전환
-- **실시간 검색**: 타이핑과 동시에 검색 결과 표시
-
-## 설치 및 실행
-
-### 필요 조건
-- Python 3.8 이상
-- PySide6
-
-### 설치 방법
-
-1. 저장소 클론 또는 파일 다운로드
 ```bash
-git clone <repository-url>
-cd memo_app
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-2. 의존성 설치
-```bash
-pip install -r requirements.txt
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-3. 애플리케이션 실행
-```bash
-python main.py
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 사용 방법
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### 1. 새 메모 작성
-1. "📝 새 메모" 버튼 클릭
-2. 제목과 내용 입력
-3. 카테고리, 부동산 유형, 위치, 우선순위 설정
-4. "💾 저장" 버튼으로 저장
+## Learn More
 
-### 2. 메모 편집
-1. 메모 목록에서 편집할 메모 클릭
-2. "✏️ 수정" 버튼 클릭
-3. 필요한 정보 수정
-4. "💾 저장" 버튼으로 변경사항 저장
+To learn more about Next.js, take a look at the following resources:
 
-### 3. 메모 검색
-1. 상단 검색창에 키워드 입력
-2. 실시간으로 검색 결과 표시
-3. 필터 옵션으로 검색 범위 제한
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### 4. 메모 삭제
-1. 삭제할 메모 선택
-2. "🗑️ 삭제" 버튼 클릭
-3. 확인 대화상자에서 "예" 선택
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 파일 구조
+## Deploy on Vercel
 
-```
-memo_app/
-├── main.py              # 메인 애플리케이션
-├── memo_model.py        # 데이터 모델 클래스
-├── styles.css           # Bootstrap 스타일 시트
-├── requirements.txt     # 의존성 목록
-├── memos.json          # 메모 데이터 저장소
-└── README.md           # 프로젝트 문서
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## 기술 스택
-
-- **GUI Framework**: PySide6 (Qt for Python)
-- **데이터 저장**: JSON 파일
-- **스타일링**: CSS3 + Bootstrap 디자인 시스템
-- **아키텍처**: MVC 패턴 (Model-View-Controller)
-
-## 주요 클래스
-
-### MemoModel
-- 메모 데이터의 CRUD 작업 관리
-- JSON 파일 기반 데이터 저장
-- 검색 및 필터링 기능
-
-### MemoApp
-- 메인 애플리케이션 윈도우
-- UI 구성 및 이벤트 처리
-- 사용자 인터랙션 관리
-
-### MemoItemWidget
-- 메모 리스트 아이템 커스텀 위젯
-- 메모 미리보기 및 메타 정보 표시
-
-## 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다.
-
-## 기여하기
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 문의사항
-
-프로젝트에 대한 문의사항이나 버그 리포트는 Issues 페이지를 통해 제출해주세요.
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

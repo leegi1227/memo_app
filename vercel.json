@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd memo_app && npm run build",
+  "outputDirectory": "memo_app/.next",
+  "installCommand": "cd memo_app && npm install",
+  "devCommand": "cd memo_app && npm run dev"
+}
