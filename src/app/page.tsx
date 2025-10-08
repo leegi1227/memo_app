@@ -126,28 +126,38 @@ export default function Home() {
       return;
     }
 
-    if (editingMemo) {
-      // 수정
-      const updatedMemo = updateMemo(editingMemo.id, formData);
-      if (updatedMemo) {
+    try {
+      if (editingMemo) {
+        // 수정
+        const updatedMemo = updateMemo(editingMemo.id, formData);
+        if (updatedMemo) {
+          setMemos(getMemos());
+          setIsDialogOpen(false);
+          resetForm();
+        }
+      } else {
+        // 생성
+        createMemo(formData);
         setMemos(getMemos());
         setIsDialogOpen(false);
         resetForm();
       }
-    } else {
-      // 생성
-      createMemo(formData);
-      setMemos(getMemos());
-      setIsDialogOpen(false);
-      resetForm();
+    } catch (error) {
+      console.error('메모 저장 중 오류:', error);
+      alert('메모 저장 중 오류가 발생했습니다.');
     }
   };
 
   // 메모 삭제
   const handleDeleteMemo = (id: string) => {
     if (confirm('정말로 이 메모를 삭제하시겠습니까?')) {
-      if (deleteMemo(id)) {
-        setMemos(getMemos());
+      try {
+        if (deleteMemo(id)) {
+          setMemos(getMemos());
+        }
+      } catch (error) {
+        console.error('메모 삭제 중 오류:', error);
+        alert('메모 삭제 중 오류가 발생했습니다.');
       }
     }
   };
@@ -261,7 +271,11 @@ export default function Home() {
             <div key={memo.id} className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow">
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">{memo.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 overflow-hidden" style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                  }}>{memo.title}</h3>
                   <div className="flex space-x-2">
                     <Button
                       variant="ghost"
@@ -282,7 +296,11 @@ export default function Home() {
                   </div>
                 </div>
 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">{memo.content}</p>
+                <p className="text-gray-600 text-sm mb-4 overflow-hidden" style={{
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical',
+                }}>{memo.content}</p>
 
                 <div className="space-y-2">
                   <div className="flex items-center text-sm text-gray-500">
