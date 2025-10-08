@@ -42,9 +42,13 @@ export function createMemo(formData: MemoFormData): Memo {
     updatedAt: now,
   };
   
+  console.log('새 메모 생성:', newMemo);
   const memos = getMemos();
+  console.log('기존 메모 개수:', memos.length);
   memos.unshift(newMemo); // 최신 메모를 맨 위에 추가
+  console.log('메모 추가 후 개수:', memos.length);
   saveMemos(memos);
+  console.log('메모 저장 완료');
   
   return newMemo;
 }
@@ -70,12 +74,19 @@ export function updateMemo(id: string, formData: MemoFormData): Memo | null {
 
 // 메모 삭제
 export function deleteMemo(id: string): boolean {
+  console.log('메모 삭제 시도:', id);
   const memos = getMemos();
+  console.log('삭제 전 메모 개수:', memos.length);
   const filteredMemos = memos.filter(memo => memo.id !== id);
+  console.log('삭제 후 메모 개수:', filteredMemos.length);
   
-  if (filteredMemos.length === memos.length) return false;
+  if (filteredMemos.length === memos.length) {
+    console.log('삭제할 메모를 찾을 수 없음');
+    return false;
+  }
   
   saveMemos(filteredMemos);
+  console.log('메모 삭제 완료');
   return true;
 }
 
