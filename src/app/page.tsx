@@ -48,9 +48,15 @@ export default function Home() {
 
   // 메모 데이터 로드
   useEffect(() => {
-    const loadedMemos = getMemos();
-    setMemos(loadedMemos);
-    setFilteredMemos(loadedMemos);
+    try {
+      const loadedMemos = getMemos();
+      setMemos(loadedMemos);
+      setFilteredMemos(loadedMemos);
+    } catch (error) {
+      console.error('메모 데이터 로드 중 오류:', error);
+      setMemos([]);
+      setFilteredMemos([]);
+    }
   }, []);
 
   // 필터링 및 검색

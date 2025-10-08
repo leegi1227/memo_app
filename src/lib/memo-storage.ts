@@ -8,8 +8,11 @@ export function getMemos(): Memo[] {
   if (typeof window === 'undefined') return [];
   
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    if (typeof localStorage !== 'undefined') {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    }
+    return [];
   } catch (error) {
     console.error('메모 데이터를 불러오는 중 오류 발생:', error);
     return [];
@@ -21,7 +24,9 @@ export function saveMemos(memos: Memo[]): void {
   if (typeof window === 'undefined') return;
   
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
+    }
   } catch (error) {
     console.error('메모 데이터를 저장하는 중 오류 발생:', error);
   }
